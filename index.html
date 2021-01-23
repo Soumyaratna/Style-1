@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SamplePage</title>
+	<link rel="stylesheet" type="text/css" href="webStyle.css"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>	
+
+	<div onclick="getClick()" onmouseenter="burgerEnter()" onmouseleave="burgerExit()" class="burger">
+		<div id="br1" class="burgerLayers"></div>
+		<div id="br2" class="burgerLayers"></div>
+		<div id="br3" class="burgerLayers"></div>
+
+		<div id="tempItem" class="tempClass"></div>
+		<div id="tempItem2" class="tempClass2"></div>
+	</div>
+
+
+	<div class="bodyText">
+		SAMPLE
+	</div>
+
+	<div class="navBack" id="navBack"></div>
+
+	<div class="navStyle" id="myNav">
+		<div class="navItem">
+			<div id="it1" class="extraPad myText">RESUME GAME</div>
+			<div id="it2" class="myText">START NEW GAME</div>
+			<div id="it3" class="myText">HIGHEST SCORE</div>
+			<div id="it4" class="myText">SETTINGS</div>
+			<div id="it5" class="myText">QUIT GAME</div>
+
+			<div id="it6" style="margin-top: 100px">
+				<a href="#"><i id="i1" class="fa fa-facebook" style="color: gray; margin-right: 10px; margin-top: 40px;"></i></a>
+				<a href="#"><i id="i2" class="fa fa-youtube-play" style="color: gray; margin-right: 10px;"></i></a>
+				<a href="#"><i id="i3" class="fa fa-twitter" style="color: gray; margin-right: 10px;"></i></a>
+				<a href="#"><i id="i4" class="fa fa-google-plus" style="color: gray"></i></a>
+			</div>
+
+			<div id="it7" style="margin-top: 20px; cursor: pointer; font-size: 14px;">About</div>
+
+		</div>
+	</div>
+
+
+<script type="text/javascript">
+
+	document.querySelector("#br3").style.width="20px";
+
+	var myVAR = 1;
+
+	function burgerEnter(){
+		if(myVAR!=0)
+		{
+			document.querySelector("#tempItem").style.display="flex";
+			document.querySelector("#tempItem2").style.display="none";
+		}else{
+			document.querySelector("#tempItem").style.display="none";
+			document.querySelector("#tempItem2").style.display="flex";
+
+			document.querySelector("#br1").style.transform="translate(0px,8px) rotate(45deg)";
+			document.querySelector("#br3").style.transform="translate(0px,-8px) rotate(135deg)";	
+		}
+
+		document.querySelector("#br3").style.width="25px";
+		document.querySelector("#tempItem").style.transform="translate(0px,0px) rotate(-45deg)";		
+		document.querySelector("#tempItem2").style.transform="translate(15px,-17px) rotate(-90deg)";	
+	}
+	function burgerExit(){
+		if(myVAR!=0)
+			document.querySelector("#br3").style.width="20px";
+		else{
+			document.querySelector("#tempItem2").style.display="flex";
+			
+			document.querySelector("#br1").style.transform="translate(0px,8px) rotate(-45deg)";
+			document.querySelector("#br3").style.transform="translate(0px,-8px) rotate(45deg)";
+		}
+
+		document.querySelector("#tempItem").style.transform="translate(-20px,-30px) rotate(-45deg)";
+		document.querySelector("#tempItem2").style.transform="translate(-15px,-17px) rotate(-90deg)";
+	}
+
+	function getClick(){
+		if(myVAR == 0)
+			closeNavBar();
+		else
+			openNavBar();
+
+		myVAR = (myVAR+1)%2;
+	}
+	function openNavBar(){
+		document.querySelector("#tempItem").style.display="none";
+
+		document.querySelector("#myNav").style.transition="0.9s";
+		document.querySelector("#navBack").style.transition="0.5s";
+
+		document.querySelector("#navBack").style.width="450px";
+		document.querySelector("#myNav").style.width="450px";
+
+		var i;
+		for (i = 1; i <= 7; i++) {
+  			document.querySelector("#it"+i).style.transition="0."+(i+2)+"s";
+			document.querySelector("#it"+i).style.marginLeft="80px";
+			document.querySelector("#it"+i).style.color="#878787";
+
+			if(i==6){
+				var j;
+				for (j = 1; j <= 4; j++) {
+  					document.querySelector("#i"+j).style.transition=(0.1*i)+"s";
+					document.querySelector("#i"+j).style.color="gray";
+				}
+			}
+		}
+
+		document.querySelector("#br1").style.transform="translate(0px,8px) rotate(-45deg)";
+		document.querySelector("#br2").style.backgroundColor="#12111c";
+		document.querySelector("#br3").style.width="25px";
+		document.querySelector("#br3").style.transform="translate(0px,-8px) rotate(45deg)";		
+
+		document.querySelector("#br1").style.transform="translate(0px,8px) rotate(45deg)";
+		document.querySelector("#br3").style.transform="translate(0px,-8px) rotate(135deg)";
+	}
+	function closeNavBar(){
+		document.querySelector("#tempItem2").style.display="none";
+
+		document.querySelector("#tempItem").style.backgroundColor="white";
+		document.querySelector("#myNav").style.transition="0.8s";
+		document.querySelector("#navBack").style.transition="1.1s";
+
+		document.querySelector("#myNav").style.width="0px";
+		document.querySelector("#navBack").style.width="0px";
+
+		var i;
+		for (i = 1; i <= 7; i++) {
+  			document.querySelector("#it"+i).style.transition=(0.1*i)+"s";
+			document.querySelector("#it"+i).style.marginLeft="40px";
+			document.querySelector("#it"+i).style.color="#12111c";
+			
+			if(i==6){
+				var j;
+				for (j = 1; j <= 4; j++) {
+  					document.querySelector("#i"+j).style.transition=(0.1*i)+"s";
+					document.querySelector("#i"+j).style.color="#12111c";
+				}
+			}
+
+		}
+
+		document.querySelector("#br1").style.transform="translate(0px,0px) rotate(0deg)";
+		document.querySelector("#br2").style.backgroundColor="#f42069";
+		document.querySelector("#br3").style.width="20px";
+		document.querySelector("#br3").style.transform="translate(0px,0px) rotate(0deg)";
+	}
+
+</script>
+
+</body>
+</html>
